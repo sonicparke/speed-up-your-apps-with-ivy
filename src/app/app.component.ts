@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'speed-up-your-apps-with-ivy';
+  public showLogin = false;
+  constructor() {}
+
+  public loadLogin() {
+    this.showLogin = !this.showLogin;
+  }
 }
