@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector, ɵrenderComponent } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,10 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public showLogin = false;
-  constructor() {}
+  constructor(private injector: Injector) {}
 
   public loadLogin() {
-    this.showLogin = !this.showLogin;
+    import('./login-form/login-form.component').then(c => {
+      ɵrenderComponent(c.LoginFormComponent, {
+        host: 'app-login-form',
+        injector: this.injector
+      });
+    });
   }
 }
