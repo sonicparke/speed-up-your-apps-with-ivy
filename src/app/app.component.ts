@@ -1,4 +1,4 @@
-import { Component, Injector, ɵrenderComponent } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,23 +6,5 @@ import { Component, Injector, ɵrenderComponent } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private injector: Injector) {}
-
-  public loadLogin() {
-    import('./login-form/login-form.component').then(c => {
-      ɵrenderComponent(c.LoginFormComponent, {
-        host: 'app-login-form',
-        injector: this.injector
-      });
-    });
-  }
-
-  public loadCounter() {
-    import('./counter/counter.component').then(c => {
-      ɵrenderComponent(c.CounterComponent, {
-        host: 'app-counter',
-        injector: this.injector
-      });
-    });
-  }
+  constructor() {}
 }
