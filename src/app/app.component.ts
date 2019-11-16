@@ -16,4 +16,13 @@ export class AppComponent {
       });
     });
   }
+
+  public loadCounter() {
+    import('./counter/counter.component').then(c => {
+      ɵrenderComponent(c.CounterComponent, {
+        host: 'app-counter',
+        injector: this.injector
+      });
+    });
+  }
 }
