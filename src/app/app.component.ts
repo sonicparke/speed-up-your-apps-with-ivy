@@ -1,4 +1,10 @@
-import { Component, Injector, ɵrenderComponent } from '@angular/core';
+import {
+  Component,
+  Injector,
+  ɵcreateInjector,
+  ViewChild,
+  ViewContainerRef
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +12,18 @@ import { Component, Injector, ɵrenderComponent } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  @ViewChild('loginForm', { read: ViewContainerRef, static: true })
+  public loginForm: ViewContainerRef;
+
   constructor(private injector: Injector) {}
 
   public loadLogin() {
-    import('./login-form/login-form.component').then(c => {
-      ɵrenderComponent(c.LoginFormComponent, {
-        host: 'app-login-form',
-        injector: this.injector
-      });
+    import('./login-form/login-form.module').then(({ LoginFormModule }) => {
+      const injector = ɵcreateInjector(LoginFormModule, this.injector);
+      const loginFormModule = injector.get(LoginFormModule);
+      const componentFactory = loginFormModule.resolveComponentFactory();
+      const componentRef = this.loginForm.createComponent(componentFactory);
+      componentRef.changeDetectorRef.markForCheck();
     });
   }
 }

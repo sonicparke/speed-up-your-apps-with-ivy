@@ -1,4 +1,8 @@
-import { NgModule } from '@angular/core';
+import {
+  NgModule,
+  ComponentFactoryResolver,
+  ComponentFactory
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './login-form.component';
 
@@ -7,4 +11,10 @@ import { LoginFormComponent } from './login-form.component';
   imports: [CommonModule],
   exports: [LoginFormComponent]
 })
-export class LoginFormModule {}
+export class LoginFormModule {
+  constructor(private resolver: ComponentFactoryResolver) {}
+
+  public resolveComponentFactory(): ComponentFactory<LoginFormComponent> {
+    return this.resolver.resolveComponentFactory(LoginFormComponent);
+  }
+}
