@@ -18,12 +18,14 @@ export class AppComponent {
   constructor(private injector: Injector) {}
 
   public loadLogin() {
-    import('./login-form/login-form.module').then(({ LoginFormModule }) => {
-      const injector = ɵcreateInjector(LoginFormModule, this.injector);
-      const loginFormModule = injector.get(LoginFormModule);
-      const componentFactory = loginFormModule.resolveComponentFactory();
-      const componentRef = this.loginForm.createComponent(componentFactory);
-      componentRef.changeDetectorRef.markForCheck();
-    });
+    import('./login-form-material/login-form.module').then(
+      ({ LoginFormModule }) => {
+        const injector = ɵcreateInjector(LoginFormModule, this.injector);
+        const loginFormModule = injector.get(LoginFormModule);
+        const componentFactory = loginFormModule.resolveComponentFactory();
+        const componentRef = this.loginForm.createComponent(componentFactory);
+        componentRef.changeDetectorRef.markForCheck();
+      }
+    );
   }
 }
