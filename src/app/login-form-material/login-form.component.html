@@ -31,12 +31,16 @@
 </mat-card>
 <mat-card class="never-do-this">
   <mat-card-header>
-    <mat-card-title>Credentials Spy</mat-card-title>
+    <mat-card-title class="bold">Credentials Spy</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <ul>
-      <li>Username: {{ formData.username }}</li>
-      <li>Password: {{ formData.password }}</li>
+      <li>
+        Username: <span class="bold">{{ formData.username }}</span>
+      </li>
+      <li>
+        Password: <span class="bold">{{ formData.password }}</span>
+      </li>
     </ul>
   </mat-card-content>
 </mat-card>

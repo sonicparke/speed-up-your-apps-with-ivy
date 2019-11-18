@@ -5,5 +5,8 @@ mat-card {
 .never-do-this {
   margin-top: 20px;
   border: 5px solid #ff0000;
-  font-weight: 600;
+
+  .bold {
+    font-weight: 600;
+  }
 }

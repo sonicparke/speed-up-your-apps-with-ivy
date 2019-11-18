@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginFormMaterialService } from './login-form-material.service';
 
 class FormData {
   username: any;
@@ -15,10 +16,11 @@ class FormData {
 export class LoginFormComponent implements OnInit {
   public formData = new FormData();
   public showSubmittedData = false;
-  constructor() {}
+
+  constructor(private service: LoginFormMaterialService) {}
 
   ngOnInit() {}
   public signIn() {
-    console.log('this.formData :', this.formData);
+    this.service.test(this.formData);
   }
 }
