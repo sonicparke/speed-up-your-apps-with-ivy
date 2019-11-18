@@ -1,12 +1,3 @@
-<div class="count">{{ state.count }}</div>
-<div class="countLabel">Count</div>
-<button class="decrement" (click)="values$.next(-1)">
-  <i class="material-icons">
-    remove
-  </i>
-</button>
-<button class="increment" (click)="values$.next(+1)">
-  <i class="material-icons">
-    add
-  </i>
-</button>
+<h1>
+  {{ numbers | async }}
+</h1>

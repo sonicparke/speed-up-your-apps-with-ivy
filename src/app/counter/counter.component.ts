@@ -1,22 +1,20 @@
-import { Component } from '@angular/core';
-import { Subject } from 'rxjs';
-import { startWith, scan } from 'rxjs/operators';
-import { ReactiveComponent } from './reactive.component';
+import { Component, OnInit, ɵmarkDirty } from '@angular/core';
+import { interval, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
   styleUrls: ['./counter.component.scss']
 })
-export class CounterComponent extends ReactiveComponent {
-  values$ = new Subject<number>();
-  state = this.connect({
-    count: this.values$.pipe(
-      startWith(0),
-      scan((count, next) => count + next, 0)
-    )
-  });
-  pushValue(value: number) {
-    this.values$.next(value);
+export class CounterComponent implements OnInit {
+  data = interval(1000);
+  numbers = new BehaviorSubject(0);
+
+  ngOnInit() {
+    this.data.subscribe(num => {
+      console.log(num);
+      this.numbers.next(num);
+      ɵmarkDirty(this);
+    });
   }
 }
