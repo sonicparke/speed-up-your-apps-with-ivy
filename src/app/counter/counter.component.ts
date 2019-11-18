@@ -1,5 +1,5 @@
 import { Component, OnInit, ɵmarkDirty } from '@angular/core';
-import { interval, BehaviorSubject } from 'rxjs';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-counter',
@@ -8,12 +8,12 @@ import { interval, BehaviorSubject } from 'rxjs';
 })
 export class CounterComponent implements OnInit {
   data = interval(1000);
-  numbers = new BehaviorSubject(0);
+  number: number;
 
   ngOnInit() {
     this.data.subscribe(num => {
       console.log(num);
-      this.numbers.next(num);
+      this.number = num;
       ɵmarkDirty(this);
     });
   }
