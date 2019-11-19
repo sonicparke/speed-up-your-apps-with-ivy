@@ -1,5 +1,6 @@
 import { Component, OnInit, ɵmarkDirty } from '@angular/core';
 import { interval } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-counter',
@@ -11,10 +12,9 @@ export class CounterComponent implements OnInit {
   number: number;
 
   ngOnInit() {
-    this.data.subscribe(num => {
+    this.data.pipe(tap(() => ɵmarkDirty(this))).subscribe(num => {
       console.log(num);
       this.number = num;
-      ɵmarkDirty(this);
     });
   }
 }
